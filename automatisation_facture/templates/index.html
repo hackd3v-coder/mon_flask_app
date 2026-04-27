@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FactureExpress - Créez vos factures en 30 secondes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .hero {
+            max-width: 1100px;
+            width: 100%;
+            background: white;
+            border-radius: 3rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+        }
+
+        .content {
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dcfce7;
+            color: #166534;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.3rem 1rem;
+            border-radius: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .subhead {
+            font-size: 1.2rem;
+            color: #475569;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            line-height: 1.5;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .feature-card {
+            background: #f8fafc;
+            padding: 1.2rem 1.5rem;
+            border-radius: 1.5rem;
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1rem;
+            color: #0f172a;
+            margin-bottom: 0.25rem;
+        }
+
+        .feature-card p {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+
+        .btn-connect {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 1rem 2.5rem;
+            border-radius: 3rem;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 1rem 0;
+            box-shadow: 0 8px 20px rgba(59,130,246,0.3);
+        }
+
+        .btn-connect:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(59,130,246,0.4);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+            color: #475569;
+            font-size: 0.85rem;
+        }
+
+        .stats span {
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        @media (max-width: 640px) {
+            h1 {
+                font-size: 1.9rem;
+            }
+            .subhead {
+                font-size: 1rem;
+            }
+            .features {
+                flex-direction: column;
+            }
+            .content {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="content">
+            <div class="badge">⭐ Simplifiez votre quotidien</div>
+            
+            <h1>
+                Factures <span class="highlight">ultra-rapides</span><br>
+                en moins d’une minute
+            </h1>
+            
+            <p class="subhead">
+                Gagnez un temps précieux avec notre outil de facturation intuitive.<br>
+                Créez, envoyez et gérez vos factures sans stress.
+            </p>
+
+            <!-- SEUL BOUTON VERS LA PAGE DE CONNEXION -->
+            <a href="{{ url_for('connection') }}" class="btn-connect">
+                🔑 Se connecter → Accéder à l'outil
+            </a>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>30 secondes</h3>
+                    <p>Création éclair</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3>PDF automatique</h3>
+                    <p>Téléchargement direct</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Devis → Facture</h3>
+                    <p>Conversion en 1 clic</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Tableau de bord</h3>
+                    <p>Suivi des paiements</p>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div>✅ +10 000 utilisateurs</div>
+                <div>⭐ 4,9/5 avis</div>
+                <div>🇫🇷 100% français</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facture</title>
+    <style>
+        body{
+            padding: 20px;
+        }
+        .initial{
+            font-weight: bold;
+            font-size: 24px;
+        }
+        .numero{
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .logo {
+            width: 250px;
+            height: 220px;
+            background-color: rgb(12, 61, 94);
+        }    
+        .entete {
+            display: flex;
+            justify-content: space-between;
+        }
+        .numero_facture{
+            display: flex;
+            justify-content: space-between;
+        }
+        .reglement{
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0px;
+        }
+        .mode_delai{
+            width: 45%;
+            display: flex;
+            justify-content: space-between;
+        }
+        mode{
+            margin-right: 10px;
+        }
+        .delai{
+            margin-left: -15px;
+
+        }
+        .hr{
+            margin-top: -10px;
+        }
+        .mode_tableau{
+            width: 200px;
+            height: 150px;
+            background-color: rgb(84, 107, 235);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .delai_tableau{
+            width: 200px;
+            height: 150px;
+            background-color: rgb(82, 138, 241);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .mode_delai_info{
+            width: 45%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .table1{
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .tableau2{
+            width: 100%;
+            margin-left: 25%;
+            margin-bottom: 45px;
+        }
+        .table2{
+            width: 75%;
+        }
+        .type{
+            text-align: right;
+        }
+        .gerant{
+            width: 100%;
+            height: 180px;
+
+        }
+        .gerant p {
+            margin-left: 90%;
+        }
+        footer{
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            height: 5px;
+            text-align: center;
+        }
+        .floating-print-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 90%;
+            background-color: #78ecec;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .nom{
+            font-weight: bold;
+            font-size: 32px;
+        }
+        .adresse{
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .email{
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .tel{
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        /* Règles pour l'impression */
+        @media print {
+            /* Supprimer les en-têtes et pieds de page du navigateur */
+            @page {
+                margin: 2cm;
+                size: auto;
+            }
+            
+            /* Masquer l'URL, la date, le chemin et tout ce qui s'affiche automatiquement */
+            @page :header {
+                display: none;
+            }
+            
+            @page :footer {
+                display: none;
+            }
+            
+            /* Cacher les éléments superflus */
+            head, script, .floating-print-btn {
+                display: none;
+            }
+            
+            /* Forcer l'impression des couleurs d'arrière-plan */
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            /* Préserver les couleurs des tableaux et le centrage */
+            .mode_tableau, .delai_tableau {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                text-align: center !important;
+            }
+            
+            /* Éviter les coupures de page à l'intérieur des blocs */
+            .entete, .reglement, .tableau1, .tableau2, .message, .gerant, footer {
+                page-break-inside: avoid;
+            }
+            
+            /* Cacher le bouton d'impression */
+            .floating-print-btn {
+                display: none !important;
+            }
+            
+            /* Ajuster les marges du body */
+            body {
+                margin: 0;
+                padding: 0;
+            }
+            
+            /* Supprimer le contenu généré automatiquement par le navigateur */
+            html, body {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="print-button-container">
+        <div class="entete">
+            <div class="information">
+                <div><p class="nom">NOM DE LA SOCIETE : INGENIERIE SERVICES</p></div>
+                <div><p class="adresse">ADRESSE : DJIDJAN</p></div>
+                <div><P class="email">EMAIL : responsabledistributionis@outlook.com</P></div>
+                <div><p class="tel">Tel : 66 09 37 27 / 79 07 95 88</p></div>
+            </div>
+            <div class="logo" >
+               
+            </div>
+        </div>
+        <hr>
+        <div class="numero_facture">
+            <div class="initial">Facture</div>
+            <div class="numero">{{ donnees['date']}}  </div>
+        </div>
+        <hr>
+        <div class="reglement">
+            <div class="client"><p>Doit : GLOBALPHONE SARL</p></div>
+            <div class="mode_delai">
+                <div class="mode"><p>MODE DE PAIEMENT</p></div>
+                <div class="mode"><p>DELAI DE PAIEMENT</p></div>
+            </div>
+        </div>    
+        <hr class="hr">
+        <div class="reglement">
+            <div class="client_info">
+                <p>GLOBALPHONE SARL</p>
+                <p>DJICORONI PARA BAMAKO</p>
+                <p>BOULEBARD MOHAMED VI</p>
+                <p>Tel : (+223) 76 31 86 82</p>
+                <p>RCC : MA.BKO.2016.M49558</p>
+            </div>
+            <div class="mode_delai_info">
+                <div class="mode_tableau"><p>Especes/...</p></div>
+                <div class="delai_tableau"><p>Immediat/...</p></div>
+            </div>
+        </div>
+        <div class="tableau1">
+            <table border="5" class="table1">
+                <thead>
+                    <tr>
+                        <th>DA</th>
+                        <th>DESIGNATION</th>
+                        <th>MONTANT TTC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <p>{{ donnees['da']}} </p>
+                            
+                        </td>
+                        <td>
+                            <p>COMMISSION DU MOIS DE : {{ donnees['mois']}} </p>
+                        </td>
+                        <td>{{ donnees['montant_ttc']|thousands }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tableau2">
+            <table border="5" class="table2">
+                <tr>
+                    <th class="type">MONTANT HT</th>
+                    <th> {{ donnees['montant_ht']|thousands}} </th>
+                </tr>
+                <tr>
+                    <th class="type"> TVA</th>
+                    <th>{{ donnees['retenue_tva']|thousands}}</th>
+                </tr>
+                <tr>
+                    <th class="type">RETENUE 40% SUR LA TVA </th>
+                    <th>{{ donnees['retenue_40']|thousands}}</th>
+                </tr>
+                <tr>
+                    <th class="type">NET A PAYER</th>
+                    <th>{{ donnees['net_a_payer']|thousands}}</th>
+                </tr>
+                <tr>
+                    <th class="type"> </th>
+                    <th class="type"> </th>
+                </tr>
+            </table>
+        </div>
+        <div class="message">
+            <p> <span>Arretée la presente facture à la somme de : {{ donnees['net_a_payer']|num_to_words }} </span> </p>
+        </div>
+        <div class="gerant"> <p>GERANT</p></div>
+        <footer>
+            <p>NOM DE LA SOCIETE INGENIERIE SERVICES NIF : 084120899M RCCM : MA.BKO.2013.A.418</p>
+        </footer>
+        <button class="floating-print-btn" onclick="window.print()">
+            🖨️ Imprimer
+        </button>
+    </div>
+    <script>
+        function imprimerSansBouton() {
+            window.print();
+        }
+    </script>
+</body>
+</html>

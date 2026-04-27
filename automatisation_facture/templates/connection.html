@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion | Ingénierie Services</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      background: linear-gradient(145deg, #0f172a 0%, #1e1b4b 50%, #0b1120 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Effet de particules / orbes lumineuses en arrière-plan */
+    body::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.3), transparent 70%);
+      top: -100px;
+      right: -100px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    body::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.2), transparent 70%);
+      bottom: -150px;
+      left: -150px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 2.2rem 2rem 2.5rem 2rem;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 30px 50px -15px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.15);
+    }
+
+    /* En-tête entreprise */
+    .company-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .company-name {
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      color: #a78bfa;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #c4b5fd, #8b5cf6);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .company-tag {
+      font-size: 0.7rem;
+      color: #6b7280;
+      margin-top: 0.3rem;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .logo-icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+      border-radius: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.4);
+      margin-bottom: 0.8rem;
+    }
+
+    h1 {
+      font-size: 1.7rem;
+      font-weight: 600;
+      background: linear-gradient(135deg, #ffffff, #c4b5fd);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+      margin-bottom: 0.2rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #9ca3af;
+      font-size: 0.8rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+    }
+
+    .input-group {
+      margin-bottom: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #d1d5db;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      margin-left: 0.2rem;
+    }
+
+    .input-field {
+      display: flex;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 1rem;
+      transition: all 0.2s;
+      padding: 0.2rem 0.8rem;
+    }
+
+    .input-field:focus-within {
+      border-color: #8b5cf6;
+      background: rgba(15, 23, 42, 0.9);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+    }
+
+    .input-field span {
+      color: #6b7280;
+      font-size: 1.2rem;
+      margin-right: 0.6rem;
+    }
+
+    input {
+      background: transparent;
+      border: none;
+      padding: 0.85rem 0;
+      font-size: 1rem;
+      color: #f3f4f6;
+      width: 100%;
+      outline: none;
+      font-family: inherit;
+    }
+
+    input::placeholder {
+      color: #4b5563;
+      font-weight: 400;
+      font-size: 0.9rem;
+    }
+
+    /* Supprimer le style auto-remplissage (garde la transparence) */
+    input:-webkit-autofill,
+    input:-webkit-autofill:focus {
+      transition: background-color 600000s 0s, color 600000s 0s;
+    }
+
+    button {
+      background: linear-gradient(95deg, #8b5cf6, #3b82f6);
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 0.9rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 1.2rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      margin-top: 0.8rem;
+      font-family: inherit;
+      letter-spacing: 0.3px;
+      box-shadow: 0 8px 18px rgba(59, 130, 246, 0.3);
+    }
+
+    button:hover {
+      background: linear-gradient(95deg, #7c3aed, #2563eb);
+      transform: scale(0.98);
+      box-shadow: 0 5px 12px rgba(59, 130, 246, 0.4);
+    }
+
+    .links {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.8rem;
+    }
+
+    .links a {
+      color: #9ca3af;
+      text-decoration: none;
+      transition: color 0.2s;
+      font-weight: 500;
+    }
+
+    .links a:hover {
+      color: #c4b5fd;
+      text-decoration: underline;
+    }
+
+    .demo-note {
+      text-align: center;
+      font-size: 0.7rem;
+      color: #4b5563;
+      margin-top: 1.8rem;
+      background: rgba(0, 0, 0, 0.3);
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0.3rem 1rem;
+      border-radius: 2rem;
+      backdrop-filter: blur(4px);
+    }
+
+    @media (max-width: 480px) {
+      .glass-card {
+        padding: 1.5rem;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      .company-name {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="glass-card">
+  <!-- En-tête entreprise -->
+  <div class="company-header">
+    <div class="company-name">INGÉNIERIE SERVICES</div>
+    <div class="company-tag">excellence & innovation</div>
+    <div class="company-tag">
+    </div>
+
+  </div>
+
+  <div class="logo">
+    <div class="logo-icon">⚙️</div>
+    <h1>Bienvenue</h1>
+  </div>
+  <div class="subtitle">Connectez-vous à votre espace</div>
+
+  <!-- Formulaire purement statique : ne poste vers aucune logique -->
+  <form action="{{ url_for('connection') }}" method="post">
+    <div class="input-group">
+      <label>📧 Adresse email</label>
+      <div class="input-field">
+        <span>✉️</span>
+        <input type="email" name="email" placeholder="votre@email.com" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>🔒 Mot de passe</label>
+      <div class="input-field">
+        <span>🔑</span>
+        <input type="password" name="password" placeholder="••••••••" autocomplete="off">
+      </div>
+    </div>
+
+    <button type="submit">Se connecter →</button>
+  </form>
+
+  <div class="links">
+    <a href="#">🔄 Mot de passe oublié ?</a>
+  </div>
+
+  <div class="demo-note">
+    ⚡ Page de démonstration — aucun traitement backend
+  </div>
+</div>
+{% if erreur%}
+            <script>
+                alert("Erreur dans l'email ou le mot de passe ")
+            </script>
+{% endif %}
+</body>
+</html>

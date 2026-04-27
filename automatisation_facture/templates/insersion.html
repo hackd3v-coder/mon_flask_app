@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Facturation | Distributeur Agréé</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(145deg, #0f172a 0%, #1e1b4b 50%, #0b1120 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      padding: 2rem;
+      width: 100%;
+      max-width: 550px;
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+
+    .company-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .company-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, #c4b5fd, #8b5cf6);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+      padding: 0.3rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #9ca3af;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.4rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 1rem;
+      color: #f3f4f6;
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+    }
+
+    input:focus, select:focus {
+      border-color: #8b5cf6;
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+    }
+
+    input::placeholder {
+      color: #4b5563;
+    }
+
+    select option {
+      background: #1e293b;
+      color: #f3f4f6;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .btn-submit {
+      background: linear-gradient(95deg, #8b5cf6, #3b82f6);
+      color: white;
+      border: none;
+      width: 100%;
+      padding: 0.9rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 1.2rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      margin-top: 0.5rem;
+      font-family: inherit;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(95deg, #7c3aed, #2563eb);
+      transform: scale(0.98);
+    }
+
+    .note {
+      font-size: 0.7rem;
+      color: #6b7280;
+      text-align: center;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    @media (max-width: 550px) {
+      .glass-card {
+        padding: 1.5rem;
+      }
+      .row {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="glass-card">
+  <div class="company-header">
+    <div class="company-name">INGÉNIERIE SERVICES</div>
+  </div>
+
+  <div style="text-align: center;">
+    <span class="badge">🏭 DISTRIBUTEUR AGRÉÉ</span>
+  </div>
+
+  <h2>📄 Facturation</h2>
+
+  <form action="{{ url_for('insersion') }}" method="post">
+    <div class="form-group">
+      <label>🏪 DISTRIBUTEUR AGRÉÉ</label>
+      <select name="distributeur">
+        <option value="">Sélectionnez un distributeur</option>
+        <option value="Ingénierie Services">Ingénierie Services</option>
+        <option value="Coulibaly Distribution">Coulibaly Distribution</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>📅 MOIS</label>
+      <select name="mois">
+        <option value="">Sélectionnez un mois</option>
+        <option value="Janvier">Janvier</option>
+        <option value="Février">Février</option>
+        <option value="Mars">Mars</option>
+        <option value="Avril">Avril</option>
+        <option value="Mai">Mai</option>
+        <option value="Juin">Juin</option>
+        <option value="Juillet">Juillet</option>
+        <option value="Août">Août</option>
+        <option value="Septembre">Septembre</option>
+        <option value="Octobre">Octobre</option>
+        <option value="Novembre">Novembre</option>
+        <option value="Décembre">Décembre</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label>💰 MONTANT TTC (€)</label>
+        <input type="number" name="montant_ttc" step="0.01" placeholder="0.00">
+      </div>
+      <div class="form-group">
+        <label>💶 MONTANT HT (€)</label>
+        <input type="number" name="montant_ht" step="0.01" placeholder="0.00">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label>🧾 RETENUE TVA (%)</label>
+        <input type="number" name="retenue_tva" step="0.01" placeholder="TVA %">
+      </div>
+      <div class="form-group">
+        <label>🔻 RETENUE 40% SUR TVA (€)</label>
+        <input type="number" name="retenue_40" step="0.01" placeholder="0.00">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>✅ NET À PAYER (€)</label>
+      <input type="number" name="net_a_payer" step="0.01" placeholder="0.00">
+    </div>
+
+    <button type="submit" class="btn-submit">📨 Envoyer le formulaire</button>
+  </form>
+
+  <div class="note">
+    ⚡ Formulaire de saisie — Tous les champs sont disponibles pour votre traitement
+  </div>
+</div>
+
+</body>
+</html>
